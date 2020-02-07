@@ -66,10 +66,28 @@
         <hr>
 
         <div class="methodology">
-            <h3 style="text-align: center;">Methodology</h3>
-            <p>
-                Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
-            </p>
+            <h2 style="text-align: center;">Methodology</h2>
+            <table>
+                <tr>
+                    
+                    <td>
+                        <p>
+                            In this work, we demonstrate the effectiveness of our attack on Deepfake detectors which rely on CNN based classification models. These victim detectors work on the frame level and classify each frame independently as either Real or Fake using the following <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">two-step pipeline</a>:
+                            <ul>
+                                <li>A face tracking model extracts the bounding box of the face in a given frame.</li>
+                                <li>The cropped face is then resized appropriately and passed as input to a CNN based classifier to be labelled as either real or fake. In our work, we consider two victim CNN classifiers: <a href="https://arxiv.org/abs/1610.02357"> XceptionNet</a> and <a href="https://arxiv.org/abs/1809.00888">MesoNet</a></li>
+                            </ul>
+                            In order to fool such detectors into classifying fake videos as real, we craft adversarial examples for each frame of the given video and combine them together into an adversarially modified fake video. We perform the attack in both white box and black box attack settings assuming different attacker capabilities and goals, and evaluate the effectiveness of attack on both raw and compressed adversarial videos.
+                        </p>
+                    </td>
+
+                    <td style="width: 50%;">
+                        <img src="images/attack_workflow.png" style="width: 100%; padding-right: 20px;">
+                    </td>
+
+                </tr>
+            </table>
+            
         </div>
         <hr>
         <div class = "divexamples">
