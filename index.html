@@ -6,70 +6,93 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <style type="text/css">
+             body {
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+                font-weight:300;
+                font-size:18px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+            }
+
+            h1 {
+                font-weight:300;
+            }
+
             table, th, td {
-              border: 1px solid black;
+
+           
+              /*border: 1px solid black;*/
             }
             td {width: 250px;}
-            /*audio { width: 400px; }*/
-            .divexamples {padding-bottom: 30px;}
-            .class_audio {width: 250px;}
         </style>
     </head>
     <body>
-        <h2 style="width: 80%">Adversarial Deepfakes: Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples</h2>
-        
-        <p style="width: 80%">
-		Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
+        <h2 style="text-align: center; font-size: 30px;">Adversarial Deepfakes: Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples</h2>
+        <hr>
+       
+        <div style="width: 100%">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: center;">
+                        Deepfake detector (XceptionNet) on Fake Video
+                    </td>
+                    <td style="text-align: center;">
+                        Deepfake detector (XceptionNet) on <b>Adversarial</b> Fake Video
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%; padding-left:20px; padding-right:20px;">
+                        <video controls style="width: 100%;">
+                          <source src="videos/video_main_fake.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </td>
+                    <td style="width: 50%; padding-left:20px; padding-right:20px;">
+                        <video controls style="width: 100%;">
+                          <source src="videos/video_main_fake.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+         <p>
+            Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
         </p>
 
-        <div style="width: 100%">
-        	<table>
-        		<tr>
-        			<td style="text-align: center;">
-        				XceptionNet output on Fake Video 
-        			</td>
-        			<td style="text-align: center;">
-        				XceptionNet output on Adversarial Fake video
-        			</td>
-        		</tr>
-        		<tr>
-        			<td>
-        				<video controls>
-						  <source src="videos/video_main_fake.mp4" type="video/mp4">
-						  Your browser does not support the video tag.
-						</video>
-        			</td>
-        			<td>
-        				<video controls>
-						  <source src="videos/video_main_fake.mp4" type="video/mp4">
-						  Your browser does not support the video tag.
-						</video>
-        				
-        			</td>
-        		</tr>
-        	</table>
+        <hr>
+
+        <div class="methodology">
+            <h3 style="text-align: center;">Methodology</h3>
+            <p>
+                Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
+            </p>
         </div>
-        <div class = "divexamples" id = "Inversion">
-			
-            <table id = "xception">
+        <hr>
+        <div class = "divexamples">
+            <h3 style="text-align: center;">White Box Attacks</h3>
+            <table id = "whitebox_table">
               <tr class = "theader">
-              	<td>Method</td>
-              	<td>Fake (From dataset)</td>
-              	<td>White-box</td>
-              	<td>Robust White-box</td>
-              	<td>Black-box</td>
-              	<td>Robust Black-box</td>
+                <td style="width: 30px;"></td>
+                <td style="text-align: center;">Fake (From dataset)</td>
+                <td style="text-align: center;">White-box</td>
+                <td style="text-align: center;">Robust White-box</td>
               </tr>
-              <!-- <tr class = "theader">
-              	<td>
-              		<video width="320" height="240" controls>
-					  <source src="videos/sample.mp4" type="video/mp4">
-					  <source src="movie.ogg" type="video/ogg">
-					  Your browser does not support the video tag.
-					</video>
-              	</td>
-              	<td>White-box</td>
-              </tr> -->
+            </table>
+        </div>
+        <hr>
+        <div class = "divexamples">
+            <h3 style="text-align: center;">Black Box Attacks</h3>
+            <table id = "blackbox_table">
+              <tr class = "theader">
+                <td style="width: 30px;"></td>
+                <td style="text-align: center;">Fake (From dataset)</td>
+                <td style="text-align: center;">Black-box</td>
+                <td style="text-align: center;">Robust Black-box</td>
+              </tr>
             </table>
         </div>
 
@@ -79,32 +102,33 @@
     </body>
 
     <script type="text/javascript">
-    	var video_width = 200;
-        function filltable(table_id){
-        	var fake_types = ["df", "f2f", "fs", "nt"];
-        	var attack_types = ["original", "wb", "rwb", "bb", "rbb"];
-        	var fake_type_name_map = {
-        		'df' : 'DeepFake',
-        		'f2f' : 'Face2Face',
-        		'fs' : 'FaceSwap',
-        		'nt' : 'NeuralTextures'
-        	}
-        	for(var i = 0; i < fake_types.length; i++){
-        		var tr_string = "<tr><td>" + fake_type_name_map[fake_types[i]]  + "</td>"
-        		for(var j = 0; j < attack_types.length; j++){
-        			var td_str = "<td>";
-        			td_str += '<video width="'+ video_width +'" controls>';
-        			td_str += ' <source src="videos/'+ fake_types[i] + '/' + attack_types[j] + '' + '.mp4" type="video/mp4">'
-        			td_str += 'Your browser does not support the video tag.'
-        			td_str += '</video></td>'
-        			tr_string += td_str;
-				}
-        		tr_string += "</tr>";
-        		$(table_id).find('tbody').append( tr_string ); 
-			}
+        var video_width = 300;
+        function filltable(table_id, attack_types){
+            var fake_types = ["df", "f2f", "fs", "nt"];
+            // var attack_types = ["original", "wb", "rwb", "bb", "rbb"];
+            var fake_type_name_map = {
+                'df' : 'DeepFake',
+                'f2f' : 'Face2Face',
+                'fs' : 'FaceSwap',
+                'nt' : 'NeuralTextures'
+            }
+            for(var i = 0; i < fake_types.length; i++){
+                var tr_string = "<tr><td style='width: 30px; text-align: center;'>" + fake_type_name_map[fake_types[i]]  + "</td>"
+                for(var j = 0; j < attack_types.length; j++){
+                    var td_str = "<td style='padding: 10px;'>";
+                    td_str += '<video width="'+ video_width +'" controls>';
+                    td_str += ' <source src="videos/'+ fake_types[i] + '/' + attack_types[j] + '' + '.mp4" type="video/mp4">'
+                    td_str += 'Your browser does not support the video tag.'
+                    td_str += '</video></td>'
+                    tr_string += td_str;
+                }
+                tr_string += "</tr>";
+                $(table_id).find('tbody').append( tr_string ); 
+            }
         }
-        filltable('#xception');
-	</script>
+        filltable('#whitebox_table', ["original", "wb", "rwb"]);
+        filltable('#blackbox_table', ["original", "bb", "rbb"]);
+    </script>
 
 </html>
 
