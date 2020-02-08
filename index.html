@@ -28,7 +28,7 @@
         </style>
     </head>
     <body>
-        <h2 style="text-align: center; font-size: 30px;">Adversarial Deepfakes: Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples</h2>
+        <h2 style="text-align: center; font-size: 30px;">Adversarial Deepfakes<br><h3 style="text-align: center; font-size: 25px;">Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples</h3></h2>
         <hr>
        
         <div style="width: 100%">
@@ -60,6 +60,7 @@
         </div>
 
          <p>
+            <i>Deepfakes</i> or facially manipulated videos, can be used maliciously to spread disinformation, harass individuals or defame famous personalities.
             Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
         </p>
 
@@ -72,7 +73,7 @@
                     
                     <td style="">
                         <p>
-                            In this work, we demonstrate the effectiveness of our attack on Deepfake detectors which rely on CNN based classification models. These victim detectors work on the frame level and classify each frame independently as either Real or Fake using the following <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">two-step pipeline</a>:
+                            We propose attacks which target Deepfake detectors that rely on CNN based classification models. These victim detectors work on the frame level and classify each frame independently as either Real or Fake using the following <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">two-step pipeline</a>:
                             <ul>
                                 <li>A face tracking model extracts the bounding box of the face in a given frame.</li>
                                 <li>The cropped face is then resized appropriately and passed as input to a CNN based classifier to be labelled as either real or fake. In our work, we consider two victim CNN classifiers: <a href="https://arxiv.org/abs/1610.02357"> XceptionNet</a> and <a href="https://arxiv.org/abs/1809.00888">MesoNet</a></li>
@@ -92,6 +93,8 @@
         <hr>
         <div class = "divexamples">
             <h3 style="text-align: center;">White Box Attacks</h3>
+            <p>In this setting, we assume the attacker has complete knowledge of the detector model's architecture and parameters. We use iterative gradient sign based attacks to craft adversarial examples in this setting. We use <a href="https://arxiv.org/pdf/1707.07397.pdf">Expectation Over Transforms</a> in our robust white box attack to craft adversarial videos that are robust to video and image compression codecs.
+            </p>
             <table id = "whitebox_table">
               <tr class = "theader">
                 <td style="width: 30px;"></td>
@@ -103,7 +106,10 @@
         </div>
         <hr>
         <div class = "divexamples">
+            
             <h3 style="text-align: center;">Black Box Attacks</h3>
+            <p>In this setting, we assume the attacker has the knowledge of the detector pipeline structure but can only query the classification CNN as a black-box to obtain the probability of the frame being real or fake. We use <a href="https://arxiv.org/abs/1804.08598">Neural Evolution Strategy (NES)</a> for estimating the gradient of output probabilities with respect to the input to craft adversarial examples in this black-box setting. Similar to the white-box setting, we craft adversarial examples that are robust to compression by ensuring robustness to input transformations during training.
+            </p>
             <table id = "blackbox_table">
               <tr class = "theader">
                 <td style="width: 30px;"></td>
@@ -125,13 +131,13 @@
             var fake_types = ["df", "f2f", "fs", "nt"];
             // var attack_types = ["original", "wb", "rwb", "bb", "rbb"];
             var fake_type_name_map = {
-                'df' : 'DeepFake',
-                'f2f' : 'Face2Face',
-                'fs' : 'FaceSwap',
-                'nt' : 'NeuralTextures'
+                'df' : ['DeepFake', 'https://github.com/deepfakes/faceswap'],
+                'f2f' : ['Face2Face', 'https://niessnerlab.org/papers/2019/8facetoface/thies2018face.pdf'],
+                'fs' : ['FaceSwap', 'https://github.com/MarekKowalski/FaceSwap/'],
+                'nt' : ['NeuralTextures', 'https://arxiv.org/abs/1904.12356']
             }
             for(var i = 0; i < fake_types.length; i++){
-                var tr_string = "<tr><td style='width: 30px; text-align: center;'>" + fake_type_name_map[fake_types[i]]  + "</td>"
+                var tr_string = "<tr><td style='width: 30px; text-align: center;'>" + '<a href="' + fake_type_name_map[fake_types[i]][1] + '">' + fake_type_name_map[fake_types[i]][0]  + "</a></td>"
                 for(var j = 0; j < attack_types.length; j++){
                     var td_str = "<td style='padding: 10px;'>";
                     td_str += '<video width="'+ video_width +'" controls>';
