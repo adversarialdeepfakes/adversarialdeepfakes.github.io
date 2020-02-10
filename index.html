@@ -61,7 +61,7 @@
 
          <p>
             <i>Deepfakes</i> or facially manipulated videos, can be used maliciously to spread disinformation, harass individuals or defame famous personalities.
-            Recently developed Deepfake detection methods rely Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods.
+            Recently developed Deepfake detection methods rely on Convolutional Neural Network (CNN) based classifiers to distinguish AI-generated fake videos from real videos. In this work, we demonstrate that it is possible to bypass such detectors by adversarially modifying fake videos synthesized using existing Deepfake generation methods. We design adversarial examples for the <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">FaceForensics++ dataset</a> to fool Deepfake detectors.
         </p>
 
         <hr>
@@ -93,7 +93,7 @@
         <hr>
         <div class = "divexamples">
             <h3 style="text-align: center;">White Box Attacks</h3>
-            <p>In this setting, we assume the attacker has complete knowledge of the detector model's architecture and parameters. We use iterative gradient sign based attacks to craft adversarial examples in this setting. We use <a href="https://arxiv.org/pdf/1707.07397.pdf">Expectation Over Transforms</a> in our robust white box attack to craft adversarial videos that are robust to video and image compression codecs.
+            <p>In this setting, we assume the attacker has complete knowledge of the detector model's architecture and parameters. We use iterative gradient sign based attacks to craft adversarial examples in this setting. We use <a href="https://arxiv.org/pdf/1707.07397.pdf">Expectation Over Transforms</a> in our robust white box attack to craft adversarial videos that are robust to video and image compression codecs. Following are some example videos of our white box attacks on XceptionNet.
             </p>
             <table id = "whitebox_table">
               <tr class = "theader">
@@ -108,7 +108,7 @@
         <div class = "divexamples">
             
             <h3 style="text-align: center;">Black Box Attacks</h3>
-            <p>In this setting, we assume the attacker has the knowledge of the detector pipeline structure but can only query the classification CNN as a black-box to obtain the probability of the frame being real or fake. We use <a href="https://arxiv.org/abs/1804.08598">Neural Evolution Strategy (NES)</a> for estimating the gradient of output probabilities with respect to the input to craft adversarial examples in this black-box setting. Similar to the white-box setting, we craft adversarial examples that are robust to compression by ensuring robustness to input transformations during training.
+            <p>In this setting, we assume the attacker has the knowledge of the detector pipeline structure but can only query the classification CNN as a black-box to obtain the probability of the frame being real or fake. We use <a href="https://arxiv.org/abs/1804.08598">Neural Evolution Strategy (NES)</a> for estimating the gradient of output probabilities with respect to the input to craft adversarial examples in this black-box setting. Similar to the white-box setting, we craft adversarial examples that are robust to compression by ensuring robustness to input transformations during training. Following are some example videos of our black box attacks on XceptionNet.
             </p>
             <table id = "blackbox_table">
               <tr class = "theader">
