@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146663019-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-146663019-2');
+        </script>
+
         <title>Adversarial Deepfakes</title>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -73,7 +83,7 @@
                     
                     <td style="width: 50%;">
                         <p>
-                            We propose attacks which target Deepfake detectors that rely on CNN based classification models. These victim detectors work on the frame level and classify each frame independently as either Real or Fake using the following <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">two-step pipeline</a>:
+                            We propose attacks which target Deepfake detectors that rely on CNN based classification models. The victim detectors used in our experiments, work on the frame level and classify each frame independently as either <i>Real</i> or <i>Fake</i> using the following <a href="http://www.niessnerlab.org/projects/roessler2019faceforensicspp.html">two-step pipeline</a>:
                             <ul>
                                 <li>A face tracking model extracts the bounding box of the face in a given frame.</li>
                                 <li>The cropped face is then resized appropriately and passed as input to a CNN based classifier to be labelled as either real or fake. In our work, we consider two victim CNN classifiers: <a href="https://arxiv.org/abs/1610.02357"> XceptionNet</a> and <a href="https://arxiv.org/abs/1809.00888">MesoNet</a></li>
@@ -108,7 +118,7 @@
         <div class = "divexamples">
             
             <h3 style="text-align: center;">Black Box Attacks</h3>
-            <p>In this setting, we assume the attacker has the knowledge of the detector pipeline structure but can only query the classification CNN as a black-box to obtain the probability of the frame being real or fake. We use <a href="https://arxiv.org/abs/1804.08598">Neural Evolution Strategy (NES)</a> for estimating the gradient of output probabilities with respect to the input to craft adversarial examples in this black-box setting. Similar to the white-box setting, we craft adversarial examples that are robust to compression by ensuring robustness to input transformations during training. Following are some example videos of our black box attacks on XceptionNet.
+            <p>In this setting, we assume the attacker has the knowledge of the detector pipeline structure but can only query the classification CNN as a black-box to obtain the probability of the frame being real or fake. We use <a href="https://arxiv.org/abs/1804.08598">Natural Evolution Strategy (NES)</a> for estimating the gradient of output probabilities with respect to the input to craft adversarial examples in this black-box setting. Similar to the white-box setting, we craft adversarial examples that are robust to compression by ensuring robustness to input transformations during training. Following are some example videos of our black box attacks on XceptionNet.
             </p>
             <table id = "blackbox_table">
               <tr class = "theader">
@@ -155,4 +165,3 @@
     </script>
 
 </html>
-
